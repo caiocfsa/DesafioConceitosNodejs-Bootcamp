@@ -29,19 +29,19 @@
 
 ## :rocket: Sobre o desafio
 
-Criar uma aplicação para armazenar projetos e suas tarefas do zero utilizando [Express](https://expressjs.com/pt-br/).
+Criar uma aplicação para armazenar projetos e suas tarefas do zero utilizando [Express](https://expressjs.com/pt-br/
 
 ### Rotas
 
-- `POST /projects`: A rota deve receber `id` e `title` dentro do corpo e cadastrar um novo projeto dentro de um array no seguinte formato: `{ id: "1", title: 'Novo projeto', tasks: [] }`; Certifique-se de enviar tanto o ID quanto o título do projeto no formato string com aspas duplas.
+- `POST /projects`: A rotas recebem `id` e `title` dentro do corpo e cadastrar um novo projeto dentro de um array no seguinte formato: `{ id: "1", title: 'Novo projeto', tasks: [] }`.
 
 - `GET /projects`: Rota que lista todos projetos e suas tarefas;
 
-- `PUT /projects/:id`: A rota deve alterar apenas o título do projeto com o `id` presente nos parâmetros da rota;
+- `PUT /projects/:id`: A rota altera apenas o título do projeto com o `id` ;
 
-- `DELETE /projects/:id`: A rota deve deletar o projeto com o `id` presente nos parâmetros da rota;
+- `DELETE /projects/:id`: A rota deleta o projeto com o `id` 
 
-- `POST /projects/:id/tasks`: A rota deve receber um campo `title` e armazenar uma nova tarefa no array de tarefas de um projeto específico escolhido através do `id` presente nos parâmetros da rota;
+- `POST /projects/:id/tasks`: A rota receber um campo `title` e armazenar uma nova tarefa no array de tarefas de um projeto específico escolhido através do `id`;
 
 ### Exemplo
 
@@ -57,15 +57,25 @@ Se eu chamar a rota `POST /projects` repassando `{ id: 1, title: 'Novo projeto' 
 ];
 ```
 
-### Middlewares
+### Middlewares Para Checar Projeto
 
-- Crie um middleware que será utilizado em todas rotas que recebem o ID do projeto nos parâmetros da URL que verifica se o projeto com aquele ID existe. Se não existir retorne um erro, caso contrário permita a requisição continuar normalmente;
+```js
 
-- Crie um middleware global chamado em todas requisições que imprime (`console.log`) uma contagem de quantas requisições foram feitas na aplicação até então;
+function CheckProjectExists(req, res, next){
+  const {id } = req.params;
+    const project = projects.search(p=>p.id == id);
 
-## 📅 Entrega
+  if(!project){
+    return res.status(400).json({error: 'Projeto não encontrado'});
+  }
+    return next();
+}
 
-Esse desafio **não precisa ser entregue** e não receberá correção, mas você pode ver o resultado do [código do desafio aqui](https://github.com/Rocketseat/bootcamp-gostack-desafio-01/blob/master/index.js). Após concluir o desafio, adicionar esse código ao seu Github é uma boa forma de demonstrar seus conhecimentos para oportunidades futuras.
+```
+
+## 📅 Desafio Não Obrigado
+
+Esse desafio **não precisa ser entregue** e não receberá correção, você pode ver o resultado do [código do desafio aqui](https://github.com/Rocketseat/bootcamp-gostack-desafio-01/blob/master/index.js).
 
 ## :memo: Licença
 
@@ -73,4 +83,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 ---
 
-Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
+Feito por Caio Fernando junto a  Rocketseat :wave: 
