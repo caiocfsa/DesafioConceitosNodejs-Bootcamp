@@ -29,7 +29,7 @@
 
 ## :rocket: Sobre o desafio
 
-Criar uma aplicação para armazenar projetos e suas tarefas do zero utilizando [Express](https://expressjs.com/pt-br/
+Criar uma aplicação para armazenar projetos e suas tarefas do zero utilizando o Express.
 
 ### Rotas
 
